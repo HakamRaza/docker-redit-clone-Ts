@@ -1,0 +1,27 @@
+{
+  "name": "docker-redit-clone-ts",
+  "version": "1.0.0",
+  "description": "Redit clone fullstack",
+  "keywords": [
+    "Redit",
+    "Typescript",
+    "GraphQL",
+    "Redis",
+    "NodeJS",
+    "Apollo"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HakamRaza/docker-redit-clone-Ts.git"
+  },
+  "author": "HakamRaza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HakamRaza/docker-redit-clone-Ts/issues"
+  },
+  "homepage": "https://github.com/HakamRaza/docker-redit-clone-Ts#readme"
+}
