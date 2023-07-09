@@ -6,6 +6,7 @@ import express from 'express';
 import {ApolloServer as Apollo} from 'apollo-server-express'
 import { buildSchema } from "type-graphql";
 import { HelloResolver } from "./resolvers/hello";
+import { PostResolver } from "./resolvers/post";
 
 
 const main = async () => { 
@@ -16,13 +17,22 @@ const main = async () => {
     // run migration to create Post table
     await orm.getMigrator().up();
 
+    // create fork to avoid global context, 
+    // reference: https://stackoverflow.com/questions/71117269/validation-error-using-global-entity-manager-instance-methods-for-context-speci
+    const em = orm.em.fork();
+
     const app = express();
 
     const apolloServer = new Apollo({
         schema: await buildSchema({
-            resolvers: [HelloResolver],
+            resolvers: [HelloResolver, PostResolver],
             validate: false
-        })
+        }),
+        /**
+         * context is a special object accessible to all resolvers, using @Ctx
+         * here we are passing em object to resolver to be use, also can pass express req/res
+         */ 
+        context: ({req, res}) => ({ em })
     });
 
     await apolloServer.start();
@@ -42,10 +52,6 @@ const main = async () => {
 
 
     /**
-        // create fork to avoid global context, 
-        // reference: https://stackoverflow.com/questions/71117269/validation-error-using-global-entity-manager-instance-methods-for-context-speci
-        const em = orm.em.fork();
-
         // creating constructor object
         const post = em.create(Post, {title: 'My first post'});
 
