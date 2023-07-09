@@ -37,5 +37,12 @@
     "node": ">=16.14.0",
     "yarn": ">=1.22.0",
     "npm": "please-use-yarn"
+  },
+  "dependencies": {
+    "@mikro-orm/cli": "^5.7.12",
+    "@mikro-orm/core": "^5.7.12",
+    "@mikro-orm/migrations": "^5.7.12",
+    "@mikro-orm/postgresql": "^5.7.12",
+    "pg": "^8.11.1"
   }
 }
