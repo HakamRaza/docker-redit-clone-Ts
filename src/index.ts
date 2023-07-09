@@ -1,1 +1,1 @@
-console.log('hello redis!')
+console.log('hello redis!!~');
